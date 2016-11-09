@@ -210,6 +210,8 @@ open class SKPhotoBrowser: UIViewController {
         if !animated {
             modalTransitionStyle = .crossDissolve
         }
+
+        delegate?.willDismissAtPageIndex?(currentPageIndex)
         
         dismiss(animated: !animated) {
             completion?()
@@ -218,7 +220,6 @@ open class SKPhotoBrowser: UIViewController {
     }
 
     open func determineAndClose() {
-        delegate?.willDismissAtPageIndex?(currentPageIndex)
         animator.willDismiss(self)
     }
 }
