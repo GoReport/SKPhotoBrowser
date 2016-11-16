@@ -499,6 +499,16 @@ internal extension SKPhotoBrowser {
         guard numberOfPhotos > 0 else {
             return
         }
+
+        if let customAction = SKPhotoBrowserOptions.actionButtonCustomAction {
+            let photo = photos[currentPageIndex]
+            guard let image = photo.underlyingImage else {
+                return
+            }
+
+            customAction(image)
+            return
+        }
         
         if let titles = SKPhotoBrowserOptions.actionButtonTitles {
             let actionSheetController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

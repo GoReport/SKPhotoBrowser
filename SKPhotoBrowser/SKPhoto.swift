@@ -10,6 +10,7 @@ import UIKit
 
 @objc public protocol SKPhotoProtocol: NSObjectProtocol {
     var underlyingImage: UIImage! { get }
+    var photoURL: String! { get }
     var caption: String! { get }
     var index: Int { get set}
     var contentMode: UIViewContentMode { get set }
