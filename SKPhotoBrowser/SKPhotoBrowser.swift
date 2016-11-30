@@ -506,7 +506,7 @@ internal extension SKPhotoBrowser {
                 return
             }
 
-            customAction(image)
+            customAction(image, currentPageIndex)
             return
         }
         
