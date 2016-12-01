@@ -18,6 +18,7 @@ open class SKPhotoBrowser: UIViewController {
     fileprivate var closeButton: SKCloseButton!
     fileprivate var deleteButton: SKDeleteButton!
     fileprivate var toolbar: SKToolbar!
+    open weak var actionButton: UIBarButtonItem!
     
     // actions
     fileprivate var activityViewController: UIActivityViewController!
@@ -579,6 +580,7 @@ private extension SKPhotoBrowser {
     
     func configureToolbar() {
         toolbar = SKToolbar(frame: frameForToolbarAtOrientation(), browser: self)
+        actionButton = toolbar.toolActionButton;
         view.addSubview(toolbar)
     }
     
