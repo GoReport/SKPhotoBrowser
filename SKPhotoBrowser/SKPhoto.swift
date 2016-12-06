@@ -16,6 +16,7 @@ import UIKit
     var contentMode: UIViewContentMode { get set }
     func loadUnderlyingImageAndNotify()
     func checkCache()
+    func reloadImage()
 }
 
 // MARK: - SKPhoto
@@ -46,6 +47,11 @@ open class SKPhoto: NSObject, SKPhotoProtocol {
         self.init()
         photoURL = url
         underlyingImage = holder
+    }
+
+    open func reloadImage() {
+        guard let newImage = UIImage(contentsOfFile: photoURL) else { return }
+        underlyingImage = newImage
     }
     
     open func checkCache() {
@@ -125,6 +131,13 @@ extension SKPhoto {
     
     public static func photoWithImageURL(_ url: String) -> SKPhoto {
         return SKPhoto(url: url)
+    }
+
+    public static func photoWithImageAndPath(_ image: UIImage, path: String) -> SKPhoto {
+        let photo = SKPhoto(image: image)
+        photo.photoURL = path
+
+        return photo
     }
     
     public static func photoWithImageURL(_ url: String, holder: UIImage?) -> SKPhoto {

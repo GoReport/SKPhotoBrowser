@@ -34,6 +34,7 @@ open class SKLocalPhoto: NSObject, SKPhotoProtocol {
     }
     
     open func checkCache() {}
+    open func reloadImage() {}
     
     open func loadUnderlyingImageAndNotify() {
         

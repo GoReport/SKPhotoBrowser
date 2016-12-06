@@ -115,6 +115,8 @@ open class SKPhotoBrowser: UIViewController {
         configureCloseButton()
         configureDeleteButton()
         configureToolbar()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(SKPhotoBrowser.buildImageIndex), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
         
         animator.willPresent(self)
     }
@@ -122,10 +124,15 @@ open class SKPhotoBrowser: UIViewController {
     
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        buildImageIndex()
+    }
+
+    func buildImageIndex() {
         reloadData()
         
         var i = 0
         for photo: SKPhotoProtocol in photos {
+            photo.reloadImage()
             photo.index = i
             i = i + 1
         }
